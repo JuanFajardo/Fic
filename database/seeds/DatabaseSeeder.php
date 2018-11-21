@@ -12,5 +12,6 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         // $this->call(UsersTableSeeder::class);
+        \DB::table('eventos')->insert(['id'=>'1', 'evento'=>'Concierto', 'fecha'=>'2018-08-16', 'horario'=>'18:16', 'lugar'=>'Casa', 'descripcion'=>'12']);
     }
 }
