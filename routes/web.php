@@ -28,6 +28,8 @@ Route::post('preventa', 'PreventaController@store');
 Route::get('/', 'ReservaController@angular');
 Route::get('/Lista', 'ReservaController@mostrar');
 Route::post('/reserva', 'ReservaController@store');
+Route::get('/Reservar/{id}', 'ReservaController@reservar');
+
 
 Route::get('reserva', 'PersonaController@index');
 Route::get('reserva/{id}', 'PersonaController@show');

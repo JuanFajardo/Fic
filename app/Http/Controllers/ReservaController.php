@@ -33,6 +33,13 @@ class ReservaController extends Controller
     return view('reserva.listar', compact('datos'));
   }
 
+  public function reservar($id){
+    $dato = Reserva::find($id);
+    $dato->estado =  'e';
+    $dato->save();
+    return back();
+  }
+
   public function store(Request $request){
     $request['estado'] = 'r';
     $request['fecha_reserva'] = date('Y-m-d H:m:s');
@@ -47,7 +54,7 @@ class ReservaController extends Controller
 
     $max = \DB::table('reservas')->max('id');
     $reserva = \DB::table('reservas')->join('eventos', 'reservas.id_evento', 'eventos.id')
-                                      ->select('reservas.*', 'eventos.evento')
+                                      ->select('reservas.*', 'eventos.*')
                                     ->where('reservas.id', '=', $max)->get();
     $eventos = \App\Evento::all();
     return view('reserva.index', compact('eventos', 'reserva'));

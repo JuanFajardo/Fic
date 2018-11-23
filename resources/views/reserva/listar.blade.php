@@ -115,6 +115,23 @@
 @endsection
 
 @section('cuerpo')
+<div class="row">
+	<div class="col-sm">
+		<span class="badge badge-info"> <h4>29 de Nov.</h4>  </span>
+	</div>
+
+	<div class="col-sm">
+		<span class="badge badge-primary"> <h4>30 de Nov.</h4>  </span>
+	</div>
+
+	<div class="col-sm">
+		<span class="badge badge-success"> <h4>01 de Dic.</h4>  </span>
+	</div>
+</div>
+
+<br>
+<br>
+
 <table id="tabla" class="table" width="100%">
   <thead>
     <tr>
@@ -138,7 +155,11 @@
 					</td>
 					<td>{{$dato->fecha_reserva}}</td>
 					<td>{{$dato->fecha_vencimiento}}</td>
-          <td> <a href="#modalModifiar"  data-toggle="modal" data-target=""  class="actualizar"> <i class="fa fa-eye"></i> Ver </a> </td>
+          <td>
+						@if( $dato->estado == "r"  )
+							<a href=""  data-toggle="modal" data-target=""  class="actualizar"> <i class="fa fa-eye"></i> Aceptar </a>
+						@endif
+					</td>
         </tr>
       @endforeach
   </tbody>
@@ -173,37 +194,12 @@
     });
 
     $('.actualizar').click(function(event){
-           event.preventDefault();
-           var fila = $(this).parents('tr');
-           var id = fila.data('id');
-           link  = '{{ asset("/index.php/Egp/Ver/")}}/'+id;
-
-           $.getJSON(link, function(data, textStatus) {
-               if(data.length > 0){
-                   $.each(data, function(index, el) {
-                     $('#id_postulante').val(el.id_postulante);
-                     $('#nombres').val(el.nombres);
-                     $('#paterno').val(el.paterno);
-                     $('#materno').val(el.materno);
-                     $('#fec_nacimiento').val(el.fec_nacimiento);
-                     $('#ci').val(el.ci);
-                     $('#direccion_vive').val(el.direccion_vive);
-                     $('#tel_fijo').val(el.tel_fijo);
-                     $('#tel_movil').val(el.tel_movil);
-                     $('#tel_fax').val(el.tel_fax);
-                     $('#email').val(el.email);
-                     $('#profesion').val(el.profesion);
-                     $('#empresa').val(el.empresa);
-                     $('#fec_alta').val(el.fec_alta);
-                     $('#ciudad').val(el.ciudad);
-                     $('#nacimiento').val(el.nacimiento);
-                     $('#expedido').val(el.expedido);
-                     $('#activo').val(el.activo);
-                     $('#ci_explicativo').val(el.ci_explicativo);
-                     $('#created_at').val(el.created_at);
-                   });
-               }
-           });
-       });
+			if( confirm('Confirmar la reserva') ){
+	    	var fila = $(this).parents('tr');
+	      var id = fila.data('id');
+	      link  = '{{ asset("/index.php/Reservar/")}}/'+id;
+				location.href=link;
+			}
+   });
 </script>
 @endsection

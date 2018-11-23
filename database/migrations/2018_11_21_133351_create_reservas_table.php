@@ -13,7 +13,7 @@ class CreateReservasTable extends Migration
             $table->string('nombres');
             $table->string('ci');
             $table->string('celular');
-            $table->string('direccion');
+            //$table->string('direccion');
 
             $table->string('estado')->commet('reservado/vencido/entregado');
             $table->dateTime('fecha_reserva');
