@@ -72,8 +72,11 @@
 											<div class="row">
 												<div class="select-field col s12">
 
-													<select name="id_evento" id="id_evento">
+													<select name="id_evento" id="id_evento" class="validate" >
 														<option value="" disabled selected>Elige tu Evento de la FIC</option>
+                            <option value="" disabled ></option>
+                            <option value="" disabled ></option>
+
 														@foreach($eventos as $evento)
 															<option value="{{$evento->id}}">Día {{ date('d', strtotime($evento->fecha))}} de {{ date('M', strtotime($evento->fecha))}}. a Hrs. {{$evento->horario}} - {{$evento->evento}}</option>
 														@endforeach
