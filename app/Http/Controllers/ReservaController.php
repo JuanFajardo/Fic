@@ -50,7 +50,7 @@ class ReservaController extends Controller
 
     $numero = Reserva::Where('ci', '=', $request['ci'])->where('id_evento', '=', $request['id_evento'])->get();
 
-    if( false){//count($numero) > 0){
+    if( count($numero) > 0){
       return "<script>
                 alert('¡ Ya se registro para este evento !');
                 location.href = '".asset('/index.php')."';
