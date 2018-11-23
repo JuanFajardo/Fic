@@ -22,6 +22,12 @@ class ReservaController extends Controller
     return $datos;
   }
 
+  public function verReserva(){
+    $eventos =  \App\Evento::all();
+    return view('reserva.reserva', compact('eventos'));
+
+  }
+
   public function show($id){
     $dato = Reserva::find($id);
     return $dato;
@@ -44,7 +50,7 @@ class ReservaController extends Controller
 
     $numero = Reserva::Where('ci', '=', $request['ci'])->where('id_evento', '=', $request['id_evento'])->get();
 
-    if( count($numero) > 0){
+    if( false){//count($numero) > 0){
       return "<script>
                 alert('¡ Ya se registro para este evento !');
                 location.href = '".asset('/index.php')."';
@@ -67,7 +73,8 @@ class ReservaController extends Controller
                                         ->select('reservas.*', 'eventos.*')
                                       ->where('reservas.id', '=', $max)->get();
       $eventos = \App\Evento::all();
-      return view('reserva.index', compact('eventos', 'reserva'));
+      //return view('reserva.index', compact('eventos', 'reserva'));
+      return view('reserva.mensaje', compact('eventos', 'reserva'));
     }
   }
 
