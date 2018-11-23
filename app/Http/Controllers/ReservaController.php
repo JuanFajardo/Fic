@@ -41,23 +41,34 @@ class ReservaController extends Controller
   }
 
   public function store(Request $request){
-    $request['estado'] = 'r';
-    $request['fecha_reserva'] = date('Y-m-d H:m:s');
-    $request['fecha_vencimiento'] = '2018-11-29 10:00:00';
-    $request['ip'] = \Request::ip();
-    $request['navegador'] = $request->header('User-Agent');
 
-    $request['user_id'] = 1;
-    $dato = new Reserva;
-    $dato->fill( $request->all() );
-    $dato->save();
+    $numero = Reserva::Where('ci', '=', $request['ci'])->where('id_evento', '=', $request['id_evento'])->get();
 
-    $max = \DB::table('reservas')->max('id');
-    $reserva = \DB::table('reservas')->join('eventos', 'reservas.id_evento', 'eventos.id')
-                                      ->select('reservas.*', 'eventos.*')
-                                    ->where('reservas.id', '=', $max)->get();
-    $eventos = \App\Evento::all();
-    return view('reserva.index', compact('eventos', 'reserva'));
+    if( count($numero) > 0){
+      return "<script>
+                alert('¡ Ya se registro para este evento !');
+                location.href = '".asset('/index.php')."';
+              </script>
+             ";
+    }else{
+      $request['estado'] = 'r';
+      $request['fecha_reserva'] = date('Y-m-d H:m:s');
+      $request['fecha_vencimiento'] = '2018-11-29 10:00:00';
+      $request['ip'] = \Request::ip();
+      $request['navegador'] = $request->header('User-Agent');
+
+      $request['user_id'] = 1;
+      $dato = new Reserva;
+      $dato->fill( $request->all() );
+      $dato->save();
+
+      $max = \DB::table('reservas')->max('id');
+      $reserva = \DB::table('reservas')->join('eventos', 'reservas.id_evento', 'eventos.id')
+                                        ->select('reservas.*', 'eventos.*')
+                                      ->where('reservas.id', '=', $max)->get();
+      $eventos = \App\Evento::all();
+      return view('reserva.index', compact('eventos', 'reserva'));
+    }
   }
 
   public function update(Request $request, $id){
