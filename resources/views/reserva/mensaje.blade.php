@@ -17,7 +17,7 @@
         <center> <h1> <b>{{$reserva[0]->nombres}}</b></h1> </center>
       </div>
       <div class="card-body">
-        <h2 class="card-title">¡Su reserva fue realizado!.</h2>
+        <h2 class="card-title">¡Su reserva fue realizada!.</h2>
         <br>
         <h2 class="card-text">
           Para la de <b>{{$reserva[0]->evento}} </b> con los grupos {{$reserva[0]->descripcion}}. <br>
