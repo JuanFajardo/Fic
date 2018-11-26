@@ -48,33 +48,51 @@ class ReservaController extends Controller
 
   public function store(Request $request){
 
-    $numero = Reserva::Where('ci', '=', $request['ci'])->where('id_evento', '=', $request['id_evento'])->get();
+    $numero = Reserva::Where('ci', '=', $request->ci)->where('celular', '=', $request->celular)->get();
 
-    if( count($numero) > 0){
+    if( false) {//count($numero) > 0){
       return "<script>
                 alert('¡ Ya se registro para este evento !');
                 location.href = '".asset('/index.php')."';
               </script>
              ";
     }else{
+
       $request['estado'] = 'r';
       $request['fecha_reserva'] = date('Y-m-d H:m:s');
       $request['fecha_vencimiento'] = '2018-11-29 10:00:00';
       $request['ip'] = \Request::ip();
       $request['navegador'] = $request->header('User-Agent');
-
       $request['user_id'] = 1;
-      $dato = new Reserva;
-      $dato->fill( $request->all() );
-      $dato->save();
+
+      if( isset($request->id_evento1)){
+        $request['id_evento'] = 1;
+        $dato = new Reserva;
+        $dato->fill( $request->all() );
+        $dato->save();
+      }
+      if( isset($request->id_evento1)){
+        $request['id_evento'] = 2;
+        $dato = new Reserva;
+        $dato->fill( $request->all() );
+        $dato->save();
+      }
+      if( isset($request->id_evento1)){
+        $request['id_evento'] = 3;
+        $dato = new Reserva;
+        $dato->fill( $request->all() );
+        $dato->save();
+      }
 
       $max = \DB::table('reservas')->max('id');
-      $reserva = \DB::table('reservas')->join('eventos', 'reservas.id_evento', 'eventos.id')
-                                        ->select('reservas.*', 'eventos.*')
-                                      ->where('reservas.id', '=', $max)->get();
+      $reservas = \DB::table('reservas')->join('eventos', 'reservas.id_evento', 'eventos.id')
+                                       ->select('reservas.*', 'eventos.*')
+                                       ->where('reservas.ci', '=', $request->ci)
+                                       ->where('reservas.celular', '=', $request->celular)
+                                       ->get();
       $eventos = \App\Evento::all();
       //return view('reserva.index', compact('eventos', 'reserva'));
-      return view('reserva.mensaje', compact('eventos', 'reserva'));
+      return view('reserva.mensaje', compact('eventos', 'reservas'));
     }
   }
 

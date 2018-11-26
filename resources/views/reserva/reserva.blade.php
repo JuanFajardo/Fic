@@ -52,8 +52,20 @@
                 </div>
               </div>
           </div>
-
+          <br><br>
           <div class="row">
+            <div class="col-sm">
+                  <h4>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="checkbox" class="form-check-input" name="id_evento1" id="id_evento1" value="1">  <span class="badge badge-dark">Noche de Rock</span></h4>
+            </div>
+            <div class="col-sm">
+                  <h4>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="checkbox" class="form-check-input" name="id_evento2" id="id_evento2" value="2">  <span class="badge badge-info">Noche de Folclore</span></h4>
+            </div>
+            <div class="col-sm">
+                  <h4>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="checkbox" class="form-check-input" name="id_evento3" id="id_evento3" value="3">  <span class="badge badge-warning">Noche de Cumbia</span></h4>
+            </div>
+          </div>
+
+          <!--<div class="row">
               <div class="col-sm">
                 <label > <b> Elige tu Evento de la FIC </b></label>
                   <select name="id_evento" id="id_evento" class="form-control" required>
@@ -63,7 +75,8 @@
                     @endforeach
                   </select>
               </div>
-          </div>
+          </div>-->
+
           <br>
           <div class="row">
             <div class="col-sm">
