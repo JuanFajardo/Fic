@@ -53,6 +53,7 @@
               </div>
           </div>
           <br><br>
+          <label> <b>Selecciona el/los enventos ah reservar</b> </label>
           <div class="row">
             <div class="col-sm">
                   <h4>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<input type="checkbox" class="form-check-input" name="id_evento1" id="id_evento1" value="1">  <span class="badge badge-dark">Noche de Rock</span></h4>
