@@ -48,9 +48,9 @@ class ReservaController extends Controller
 
   public function store(Request $request){
 
-    $numero = Reserva::Where('ci', '=', $request->ci)->where('celular', '=', $request->celular)->get();
+    $numero = Reserva::Where('ci', '=', $request->ci)->where('celular', '=', $request->celular)->count();
 
-    if( false) {//count($numero) > 0){
+    if($numero > 0){
       return "<script>
                 alert('¡ Ya se registro para este evento !');
                 location.href = '".asset('/index.php')."';
@@ -71,13 +71,13 @@ class ReservaController extends Controller
         $dato->fill( $request->all() );
         $dato->save();
       }
-      if( isset($request->id_evento1)){
+      if( isset($request->id_evento2)){
         $request['id_evento'] = 2;
         $dato = new Reserva;
         $dato->fill( $request->all() );
         $dato->save();
       }
-      if( isset($request->id_evento1)){
+      if( isset($request->id_evento3)){
         $request['id_evento'] = 3;
         $dato = new Reserva;
         $dato->fill( $request->all() );

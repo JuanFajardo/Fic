@@ -26,7 +26,7 @@ Route::post('preventa', 'PreventaController@store');
 
 
 Route::get('/', 'ReservaController@angular');
-Route::get('/Lista', 'ReservaController@mostrar');
+Route::get('/68068b78a2583d20a0abe71c4fe38fe4', 'ReservaController@mostrar');
 Route::get('/reserva', 'ReservaController@verReserva');
 Route::post('/reserva', 'ReservaController@store');
 Route::get('/Reservar/{id}', 'ReservaController@reservar');
