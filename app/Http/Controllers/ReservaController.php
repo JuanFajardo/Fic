@@ -36,7 +36,10 @@ class ReservaController extends Controller
   public function mostrar(){
     $datos = \DB::table('reservas')->join('eventos', 'reservas.id_evento', 'eventos.id')
                                       ->select('reservas.*', 'eventos.evento')->get();
-    return view('reserva.listar', compact('datos'));
+    $jueves  = \DB::table('reservas')->where('id_evento', '=', '1')->count();
+    $viernes = \DB::table('reservas')->where('id_evento', '=', '2')->count();
+    $sabado  = \DB::table('reservas')->where('id_evento', '=', '3')->count();
+    return view('reserva.listar', compact('datos', 'jueves', 'viernes', 'sabado'));
   }
 
   public function reservar($id){
@@ -47,8 +50,20 @@ class ReservaController extends Controller
   }
 
   public function store(Request $request){
+    //return $request->all();
+    $id_evento = "";
+    if( isset($request->id_evento1) ){
+      $id_evento = 1;
+    }elseif( isset($request->id_evento2) ){
+      $id_evento = 2;
+    }elseif( isset($request->id_evento3) ){
+      $id_evento = 3;
+    }
 
-    $numero = Reserva::Where('ci', '=', $request->ci)->where('celular', '=', $request->celular)->count();
+    $numero = Reserva::Where('ci', '=', $request->ci)
+                       ->where('celular', '=', $request->celular)
+                       //->where('id_evento', '=', $id_evento)
+                       ->count();
 
     if($numero > 0){
       return "<script>
@@ -57,7 +72,6 @@ class ReservaController extends Controller
               </script>
              ";
     }else{
-
       $request['estado'] = 'r';
       $request['fecha_reserva'] = date('Y-m-d H:m:s');
       $request['fecha_vencimiento'] = '2018-11-29 10:00:00';
@@ -65,19 +79,19 @@ class ReservaController extends Controller
       $request['navegador'] = $request->header('User-Agent');
       $request['user_id'] = 1;
 
-      if( isset($request->id_evento1)){
+      if( isset($request->id_evento1) ){
         $request['id_evento'] = 1;
         $dato = new Reserva;
         $dato->fill( $request->all() );
         $dato->save();
       }
-      if( isset($request->id_evento2)){
+      if( isset($request->id_evento2) ){
         $request['id_evento'] = 2;
         $dato = new Reserva;
         $dato->fill( $request->all() );
         $dato->save();
       }
-      if( isset($request->id_evento3)){
+      if( isset($request->id_evento3) ){
         $request['id_evento'] = 3;
         $dato = new Reserva;
         $dato->fill( $request->all() );
@@ -91,7 +105,7 @@ class ReservaController extends Controller
                                        ->where('reservas.celular', '=', $request->celular)
                                        ->get();
       $eventos = \App\Evento::all();
-      //return view('reserva.index', compact('eventos', 'reserva'));
+
       return view('reserva.mensaje', compact('eventos', 'reservas'));
     }
   }

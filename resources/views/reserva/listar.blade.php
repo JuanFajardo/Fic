@@ -117,15 +117,15 @@
 @section('cuerpo')
 <div class="row">
 	<div class="col-sm">
-		<span class="badge badge-info"> <h4>29 de Nov.</h4>  </span>
+		<span class="badge badge-info"> <h4><center>29 de Nov.</center> <br> {{ $jueves }} Personas Inscritas</h4>  </span>
 	</div>
 
 	<div class="col-sm">
-		<span class="badge badge-primary"> <h4>30 de Nov.</h4>  </span>
+		<span class="badge badge-primary"> <h4><center>30 de Nov.</center> <br> {{ $viernes }} Personas Inscritas</h4>  </span>
 	</div>
 
 	<div class="col-sm">
-		<span class="badge badge-success"> <h4>01 de Dic.</h4>  </span>
+		<span class="badge badge-success"> <h4><center>01 de Dic.</center> <br> {{ $sabado }} Personas Inscritas</h4>  </span>
 	</div>
 </div>
 
@@ -135,7 +135,7 @@
 <table id="tabla" class="table" width="100%">
   <thead>
     <tr>
-        <th> Nombres </th> <th> CI </th> <th> Evento </th> <th> Estado</th> <th> Fecha Reserva </th> <th> Fecha Vencimiento</th> <th> Acciones </th>
+        <th> Nombres </th> <th> CI </th> <th> Celular </th>  <th> Evento </th> <th> Estado</th> <th> Fecha Reserva </th> <th> Fecha Vencimiento</th> <th> Acciones </th>
     </tr>
   </thead>
   <tbody>
@@ -143,6 +143,7 @@
       <tr data-id="{{ $dato->id }}">
           <td>{{$dato->nombres}} </td>
           <td>{{$dato->ci}}</td>
+          <td>{{$dato->celular}}</td>
           <td>{{$dato->evento}}</td>
 					<td>
 						@if( $dato->estado == "r"  )
