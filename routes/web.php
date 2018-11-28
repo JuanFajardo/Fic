@@ -31,6 +31,8 @@ Route::get('/reserva', 'ReservaController@verReserva');
 Route::post('/reserva', 'ReservaController@store');
 Route::get('/Reservar/{id}', 'ReservaController@reservar');
 
+Route::get('/confirmar', 'ReservaController@confirmar');
+Route::post('/confirmar', 'ReservaController@confirmarPost');
 
 //Route::get('reserva', 'PersonaController@index');
 //Route::get('reserva/{id}', 'PersonaController@show');

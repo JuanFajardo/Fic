@@ -22,6 +22,33 @@ class ReservaController extends Controller
     return $datos;
   }
 
+  public function confirmar(){
+    return view('reserva.confirmar');
+  }
+
+  public function confirmarPost(Request $request){
+
+    if( isset($request->ci) ){
+      $eventos = Reserva::where('ci', '=', $request->ci)->get();
+      $respuesta = "";
+      if( count($eventos) > 0 ){
+        foreach($eventos as $evento){
+          $dato =  Reserva::find($evento->id);
+          $dato->estado = 'e';
+          $dato->save();
+        }
+        $respuesta = $eventos[0]->nombres;
+      }else{
+        $respuesta = "No Existe";
+      }
+
+      return view('reserva.respuesta', compact('respuesta'));
+    }else{
+      return back();
+    }
+
+  }
+
   public function verReserva(){
     $eventos =  \App\Evento::all();
     return view('reserva.reserva', compact('eventos'));
