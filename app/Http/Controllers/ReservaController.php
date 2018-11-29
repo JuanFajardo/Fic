@@ -22,6 +22,17 @@ class ReservaController extends Controller
     return $datos;
   }
 
+  public function revisar(){
+    return view('reserva.consultar');
+  }
+
+  public function revisarGet($id){
+    $dato = Reserva::Where('ci', '=', $id)->get();
+    return $dato;
+    //return view('reserva.consultar');
+  }
+
+
   public function confirmar(){
     return view('reserva.confirmar');
   }

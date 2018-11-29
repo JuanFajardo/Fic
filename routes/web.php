@@ -34,6 +34,10 @@ Route::get('/Reservar/{id}', 'ReservaController@reservar');
 Route::get('/confirmar', 'ReservaController@confirmar');
 Route::post('/confirmar', 'ReservaController@confirmarPost');
 
+Route::get('/revisar', 'ReservaController@revisar');
+Route::get('/revisar/{id}', 'ReservaController@revisarGet');
+
+
 //Route::get('reserva', 'PersonaController@index');
 //Route::get('reserva/{id}', 'PersonaController@show');
 //Route::post('reserva', 'PersonaController@store');
