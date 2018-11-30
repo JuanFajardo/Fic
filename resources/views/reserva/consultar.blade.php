@@ -69,7 +69,7 @@
 
           });
       }else{
-        var texto =  "NO REALIZO SU RESRVA";
+        var texto =  "El "+ci+" NO REALIZO SU RESERVA";
         $( "#msj1" ).html( texto );
       }
     });
