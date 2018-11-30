@@ -12,12 +12,10 @@
           </div>
 
 
-
+          <h1> ARTES MUSICALES - PRIMARIA</h1><br>
           <div class="row">
-            @foreach($datos as $dato)
+            @foreach($datos0 as $dato)
             <figure class = "votar" data-id="{{ $dato->id }}">
-
-
             <div class="card votar" style="width: 18rem;">
               <div class="card-body">
                 <center>
@@ -35,10 +33,80 @@
               </div>
             </div>
             </figure>
-
             @endforeach
           </div>
 
+          <h1> ARTES MUSICALES - SECUNDARIA</h1><br>
+          <div class="row">
+            @foreach($datos1 as $dato)
+            <figure class = "votar" data-id="{{ $dato->id }}">
+            <div class="card votar" style="width: 18rem;">
+              <div class="card-body">
+                <center>
+                <h4 class="card-title">{{$dato->nombre}}</h4>
+                  <p class="card-text">
+                    <img src="{{asset('artista/'.$dato->foto)}}"  width="200" class="rounded">
+                  </p>
+                  <figcaption>
+                    <a  class="btn btn-info" class="votar">
+                    <h4 class="">CLICK VOTAR <i class></i> </h4>
+                      <span class="badge badge-light"> <h4>{{$dato->obra}}</h4>  </span>
+                    </a>
+                  </figcaption>
+                </center>
+              </div>
+            </div>
+            </figure>
+            @endforeach
+          </div>
+
+          <h1> ARTES ESCENICAS - PRIMARIA</h1><br>
+          <div class="row">
+            @foreach($datos2 as $dato)
+            <figure class = "votar" data-id="{{ $dato->id }}">
+            <div class="card votar" style="width: 18rem;">
+              <div class="card-body">
+                <center>
+                <h4 class="card-title">{{$dato->nombre}}</h4>
+                  <p class="card-text">
+                    <img src="{{asset('artista/'.$dato->foto)}}"  width="200" class="rounded">
+                  </p>
+                  <figcaption>
+                    <a  class="btn btn-info" class="votar">
+                    <h4 class="">CLICK VOTAR <i class></i> </h4>
+                      <span class="badge badge-light"> <h4>{{$dato->obra}}</h4>  </span>
+                    </a>
+                  </figcaption>
+                </center>
+              </div>
+            </div>
+            </figure>
+            @endforeach
+          </div>
+
+          <h1> ARTES ESCENICAS - SECUNDARIA</h1><br>
+          <div class="row">
+            @foreach($datos3 as $dato)
+            <figure class = "votar" data-id="{{ $dato->id }}">
+            <div class="card votar" style="width: 18rem;">
+              <div class="card-body">
+                <center>
+                <h4 class="card-title">{{$dato->nombre}}</h4>
+                  <p class="card-text">
+                    <img src="{{asset('artista/'.$dato->foto)}}"  width="200" class="rounded">
+                  </p>
+                  <figcaption>
+                    <a  class="btn btn-info" class="votar">
+                    <h4 class="">CLICK VOTAR <i class></i> </h4>
+                      <span class="badge badge-light"> <h4>{{$dato->obra}}</h4>  </span>
+                    </a>
+                  </figcaption>
+                </center>
+              </div>
+            </div>
+            </figure>
+            @endforeach
+          </div>
       </div>
     </div>
 
