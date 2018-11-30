@@ -1,8 +1,7 @@
 @extends('bett1')
 @section('cuerpo')
 <br><br>
-<form  autocomplete="off" action="{{asset('index.php/gamp')}}" method="post" id="formulario">
-{{ csrf_field() }}
+
 <div class="row">
   <div class="col-sm">
     <div class="card">
@@ -41,10 +40,10 @@
     </div>
   </div>
 </div>
-</form>
 @endsection
 
 @section('js')
+
 <script type="text/javascript">
   jQuery('#boton').click(function(){
     var ci = $('#ci').val();
@@ -71,7 +70,7 @@
           });
       }else{
         var texto =  "NO REALIZO SU RESRVA";
-        $( "#msj1" ).val( texto )
+        $( "#msj1" ).html( texto );
       }
     });
 
