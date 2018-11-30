@@ -71,6 +71,7 @@
       }else{
         var texto =  "El "+ci+" NO REALIZO SU RESERVA";
         $( "#msj1" ).html( texto );
+        $( "#msj2" ).html( ' ' );
       }
     });
 
