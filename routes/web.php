@@ -1,21 +1,13 @@
 <?php
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
-
 /*Route::get('/', function () {
     return view('welcome');
 });*/
+Route::get('/artista', 'ArtistaController@index');
+Route::get('/ver', 'ArtistaController@mostrar');
+Route::get('/artista/{id}', 'VotacionController@votacion');
 
-
+/******************************************************/
 Route::get('Reserva', 'PreventaController@angular');
 Route::put('reserva/{id}', 'PreventaController@update');
 //Route::get('reserva/{id}/{cantidades}', 'PreventaController@credito');
@@ -36,8 +28,7 @@ Route::post('/confirmar', 'ReservaController@confirmarPost');
 
 Route::get('/revisar', 'ReservaController@revisar');
 Route::get('/revisar/{id}', 'ReservaController@revisarGet');
+Route::get('/total', 'ReservaController@total');
 
 
-//Route::get('reserva', 'PersonaController@index');
-//Route::get('reserva/{id}', 'PersonaController@show');
-//Route::post('reserva', 'PersonaController@store');
+/******************************************************/

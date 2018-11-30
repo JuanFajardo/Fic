@@ -27,9 +27,17 @@ class ReservaController extends Controller
   }
 
   public function revisarGet($id){
-    $dato = Reserva::Where('ci', '=', $id)->get();
-    return $dato;
+    $datos = Reserva::Where('ci', '=', $id)->get();
+    $dato = Reserva::find($datos[0]->id);
+    $dato->estado = 'listo';
+    $dato->save();
+    return array($dato);
     //return view('reserva.consultar');
+  }
+
+  public function total(){
+    $total = \DB::table('reservas')->where('estado', '=', 'listo')->count();
+    return array(array("total"=>$total));
   }
 
 

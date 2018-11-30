@@ -22,7 +22,10 @@
             <div class="col-sm">
               <center>
                 <button type="button" name="button" class="btn btn-danger btn-lg" id="boton" >
-                  <h3>Revisar</h3></button>
+                  <h3>Revisar</h3>
+                  <?php $total = \DB::table('reservas')->where('estado', '=', 'listo')->count(); ?>
+                <span class="badge badge-light"> <h4 id="total"> Total registrado {{$total}}</h4>  </span>
+              </button>
               </center>
             </div>
           </div>
@@ -55,16 +58,15 @@
     $.getJSON(link, function(data, textStatus) {
       if(data.length > 0){
           $.each(data, function(index, el) {
-
             var texto =  el.ci + " - "+ el.nombres;
             $( "#msj1" ).html( texto )
-
             var texto2 = "";
-            if( el.estado == "gamp")
+            if(el.estado == "listo"){
+              texto2 =  '<span class="badge badge-danger">Ya registro este numero de C.I.</span>';
+            }else if( el.ip == "127.0.0.1"){
               texto2 =  '<span class="badge badge-primary">SUPER V.I.P.</span>';
-            else
-              texto2 =  '<span class="badge badge-success">VIP INSCRITOS</span>';
-
+            }else {
+              texto2 =  '<span class="badge badge-success">VIP INSCRITOS</span>'; }
             $( "#msj2" ).html( texto2 );
 
           });
@@ -74,6 +76,16 @@
         $( "#msj2" ).html( ' ' );
       }
     });
+
+    link = "{{asset('index.php/total')}}/";
+    $.getJSON(link, function(data, textStatus) {
+      if(data.length > 0){
+          $.each(data, function(index, el) {
+            $( "#total" ).html( " Total registrado  " + el.total );
+          });
+      }
+    });
+
 
   });
 </script>
