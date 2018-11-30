@@ -3,7 +3,7 @@
 /*Route::get('/', function () {
     return view('welcome');
 });*/
-Route::get('/artista', 'ArtistaController@index');
+Route::get('/votar', 'ArtistaController@index');
 Route::get('/ver', 'ArtistaController@mostrar');
 Route::get('/artista/{id}', 'VotacionController@votacion');
 

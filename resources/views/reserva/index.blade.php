@@ -4,7 +4,7 @@
 <div class="row">
   <div class="col-sm">
     <br><br>
-    <!--<a href="{{asset('/index.php/artista')}}" class="btn btn-primary  btn-lg"> <h1>VOTA AQUÍ</h1></a>-->
+    <a href="{{asset('/index.php/artista')}}" class="btn btn-primary  btn-lg"> <h1>VOTA AQUÍ</h1></a>
     <br>
     <img src="{{asset('/img/fic.png')}}" alt="" class="circle responsive-img center-align pulse" width="100%"><br>
     <br>
