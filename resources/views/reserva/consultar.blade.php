@@ -61,7 +61,7 @@
 
             var texto2 = "";
             if( el.estado == "gamp")
-              texto2 =  '<span class="badge badge-primary">VIP GAMP</span>';
+              texto2 =  '<span class="badge badge-primary">SUPER V.I.P.</span>';
             else
               texto2 =  '<span class="badge badge-success">VIP INSCRITOS</span>';
 
